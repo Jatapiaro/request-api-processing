@@ -7,11 +7,10 @@ Pequeña librería para Processing que permite realizar HTTP Post y obtener el r
 Cómo usarla
 ------------
 
-`
-1. Descarga o clona el repositorio dentro de `Processing/Libraries`.
-        a. Si lo descargas manualmente, descomprime el .zip y añade la carpeta en la carpeta anteriormente mencionada.
-        b. Si decides clonarlo, dentro de la carpeta anteriormente mencionada ejecuta `git clone https://github.com/Jatapiaro/request-api-processing`
-`
+
+* Descarga o clona el repositorio dentro de `Processing/Libraries`.
+        * Si lo descargas manualmente, descomprime el .zip y añade la carpeta en la carpeta anteriormente mencionada.
+        * Si decides clonarlo, dentro de la carpeta anteriormente mencionada ejecuta `git clone https://github.com/Jatapiaro/request-api-processing`
 
 2. Puedes abrir el ejemplo. En el mismo vienen las instrucciones para obtener una llave y poder usar el API que se sugiere.
 3. Dale play y espera a ver en la consola el resultado.
