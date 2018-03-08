@@ -5,6 +5,7 @@
  */
 package http.requests;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -17,6 +18,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.FileEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -34,6 +37,7 @@ public class PostRequest {
     private URI uri;
     private URIBuilder builder;
     private HashMap<String, String> body;
+    private String responseResult;
     
    
     public PostRequest( String url ) throws URISyntaxException {
@@ -41,6 +45,7 @@ public class PostRequest {
         this.uri = this.builder.build();
         this.request = new HttpPost(uri);
         this.body = new HashMap<String, String>();
+        this.responseResult = null;
     }
     
     public void addHeader(String key, String value) {
@@ -54,6 +59,7 @@ public class PostRequest {
     public void reset() {
         this.request.reset();
         this.body = new HashMap<String, String>();
+        this.responseResult = null;
     }
     
     private StringEntity buildStringEntity() throws UnsupportedEncodingException {
@@ -73,21 +79,43 @@ public class PostRequest {
         return new StringEntity(sb.toString());
     }
     
-    public void sendRequest() {
+    public void sendSimpleRequest() {
         
         try {
             HttpClient httpClient = new DefaultHttpClient();
             this.request.setEntity(this.buildStringEntity());
             HttpResponse response = httpClient.execute(request);
             HttpEntity entity = response.getEntity();
-
             if (entity != null) {
-                System.out.println(EntityUtils.toString(entity));
+                this.responseResult = EntityUtils.toString(entity);
             }
         } catch(Exception e) {
             System.out.println(e.getMessage());
         }
     
     }
+    
+    public void sendImageRequest(String imagePath) {
+        try {
+            HttpClient httpClient = new DefaultHttpClient();
+            File file = new File(imagePath);
+            FileEntity reqEntity = new FileEntity(file, ContentType.APPLICATION_OCTET_STREAM);
+            HttpResponse response = httpClient.execute(request);
+            HttpEntity entity = response.getEntity();
+            if (entity != null) {
+                this.responseResult = EntityUtils.toString(entity);
+            }
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+         
+    }
+    
+    /**
+    * @return the responseResult
+    */
+    public String getResponseResult() {
+        return this.responseResult;
+    }   
     
 }
