@@ -19,12 +19,12 @@ void setup() {
     p.addHeader("Content-Type", "application/json");
     p.addHeader("Ocp-Apim-Subscription-Key", yourApiKey);
     p.addBodyParam("url", "http://wrmx00.epimg.net/programa/imagenes/2016/05/31/martha_debayle/1464712973_245053_1464723978_noticia_normal.jpg");
-    p.sendRequest();
+    p.sendSimpleRequest();
     int x = 1000000;
     while(x != 0) {
       x--;
     }
-    println(p.getResponseValue());
+    println(p.getResponseResult());
   } catch(Exception e) {
     println(e.getMessage());
   }
