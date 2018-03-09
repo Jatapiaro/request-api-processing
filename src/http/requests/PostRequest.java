@@ -6,18 +6,21 @@
 package http.requests;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.FileEntity;
 import org.apache.http.entity.StringEntity;
@@ -98,8 +101,14 @@ public class PostRequest {
     public void sendImageRequest(String imagePath) {
         try {
             HttpClient httpClient = new DefaultHttpClient();
+
             File file = new File(imagePath);
-            FileEntity reqEntity = new FileEntity(file, ContentType.APPLICATION_OCTET_STREAM);
+            FileInputStream fileInputStreamReader = new FileInputStream(file);
+            byte[] bytes = new byte[(int)file.length()];
+            fileInputStreamReader.read(bytes);            
+            ByteArrayEntity reqEntity = new ByteArrayEntity(bytes, ContentType.APPLICATION_OCTET_STREAM);
+            request.setEntity(reqEntity);
+
             HttpResponse response = httpClient.execute(request);
             HttpEntity entity = response.getEntity();
             if (entity != null) {
@@ -107,9 +116,9 @@ public class PostRequest {
             }
         } catch(Exception e) {
             System.out.println(e.getMessage());
-        }
-         
+        }   
     }
+    
     
     /**
     * @return the responseResult
