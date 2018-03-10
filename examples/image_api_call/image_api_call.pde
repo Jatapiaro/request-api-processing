@@ -17,7 +17,7 @@ void setup() {
       "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceAttributes=emotion"
     );
     p.addHeader("Content-Type", "application/octet-stream");
-    p.addHeader("Ocp-Apim-Subscription-Key", "69da9e6ea9d24a0d862de15ecfa9524e");
+    p.addHeader("Ocp-Apim-Subscription-Key", yourApiKey);
     p.sendImageRequest("/Users/jacobotapia/Desktop/14933186321029.jpg");
     int x = 1000000;
     while(x != 0) {
