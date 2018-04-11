@@ -11,14 +11,22 @@ import http.requests.PostRequest;
 */
 
 void setup() {
+<<<<<<< HEAD
   String yourApiKey = "2694cb36d291454c8ee2efc3bdf4d9a4";
+=======
+  String yourApiKey = "your-api-key";
+>>>>>>> c73c17d4915cd6b36b2ee6b7f00017ac673c4e3d
   try {
     PostRequest p = new PostRequest(
       "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceAttributes=emotion"
     );
     p.addHeader("Content-Type", "application/octet-stream");
     p.addHeader("Ocp-Apim-Subscription-Key", yourApiKey);
+<<<<<<< HEAD
     p.sendImageRequest("/Users/jacobotapia/Desktop/emotions.jpeg");
+=======
+    p.sendImageRequest("/Users/jacobotapia/Desktop/14933186321029.jpg");
+>>>>>>> c73c17d4915cd6b36b2ee6b7f00017ac673c4e3d
     int x = 1000000;
     while(x != 0) {
       x--;
@@ -27,4 +35,8 @@ void setup() {
   } catch(Exception e) {
     println(e.getMessage());
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c73c17d4915cd6b36b2ee6b7f00017ac673c4e3d
