@@ -11,15 +11,14 @@ import http.requests.PostRequest;
 */
 
 void setup() {
-  String yourApiKey = "e51672da5bf742b2a1c665e819a7d294";
+  String yourApiKey = "2694cb36d291454c8ee2efc3bdf4d9a4";
   try {
     PostRequest p = new PostRequest(
       "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceAttributes=emotion"
     );
-    p.addHeader("Content-Type", "application/json");
+    p.addHeader("Content-Type", "application/octet-stream");
     p.addHeader("Ocp-Apim-Subscription-Key", yourApiKey);
-    p.addBodyParam("url", "http://wrmx00.epimg.net/programa/imagenes/2016/05/31/martha_debayle/1464712973_245053_1464723978_noticia_normal.jpg");
-    p.sendSimpleRequest();
+    p.sendImageRequest("/Users/jacobotapia/Desktop/emotions.jpeg");
     int x = 1000000;
     while(x != 0) {
       x--;
